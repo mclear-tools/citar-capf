@@ -7,9 +7,10 @@ keys. This backend activates for citation styles used by =pandoc-mode= (@),
 
 Load the package and add the following hooks:
 
-```elisp
+#+begin_src emacs-lisp
 (require 'citar-capf)
 ;; Define hook
+;; NOTE: this hook puts citar-capf first in the list of completion functions for the buffer. 
 (defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
 ;; Add hooks
 (add-hook 'tex-mode-hook #'citar-capf-hook)
@@ -17,14 +18,16 @@ Load the package and add the following hooks:
 (add-hook 'org-mode-hook #'citar-capf-hook)
 ;; Global hook
 (add-hook 'completion-at-point-functions #'citar-capf 'append)
-```
+#+end_src
+
 
 ** Customization
 
 =citar-capf= reads from a bibliography file or files specified in
 =citar-bibliography=. 
 
-```elisp
+#+begin_src emacs-lisp
 (setq citar-bibliography '("/home/cooluser/thesis/thesis1.bib"
-	  "/home/cooluser/thesis/thesi2.bib"))
-```
+      "/home/cooluser/thesis/thesi2.bib"))
+#+end_src
+
