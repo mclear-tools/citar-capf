@@ -1,0 +1,30 @@
+=citar-capf= provides a completion-at-point function for citations in latex, org,
+and markdown modes. This completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex
+keys. This backend activates for citation styles used by =pandoc-mode= (@),
+=latex-mode= (\cite{}), and =org-mode= (cite:@).
+
+** Initialization 
+
+Load the package and add the following hooks:
+
+```elisp
+(require 'citar-capf)
+;; Define hook
+(defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
+;; Add hooks
+(add-hook 'tex-mode-hook #'citar-capf-hook)
+(add-hook 'markdown-mode-hook #'citar-capf-hook)
+(add-hook 'org-mode-hook #'citar-capf-hook)
+;; Global hook
+(add-hook 'completion-at-point-functions #'citar-capf 'append)
+```
+
+** Customization
+
+=citar-capf= reads from a bibliography file or files specified in
+=citar-bibliography=. 
+
+```elisp
+(setq citar-bibliography '("/home/cooluser/thesis/thesis1.bib"
+	  "/home/cooluser/thesis/thesi2.bib"))
+```
