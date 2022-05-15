@@ -29,7 +29,14 @@
 ;; Completion at point for citations using citar as its backend.
 
 ;;; Code:
+;;;; Requirements
+(require 'citar)
+(require 'org)
 
+(declare-function org-element-at-point "org-element")
+(declare-function citar--get-candidates "citar")
+
+;;;; Functions
 (defun citar-capf ()
   "Complete citation key at point for org, markdown, or latex.
 The parsing of the bibtex file is handled by citar."
