@@ -20,6 +20,32 @@ Load the package and add the following hooks:
 (add-hook 'completion-at-point-functions #'citar-capf 'append)
 #+end_src
 
+If you use use-package, here's how you might set things:
+
+#+begin_src emacs-lisp
+(use-package citar-capf
+  :straight (:type git :host github :repo "mclear-tools/citar-capf")
+  :after citar
+  :demand t
+  :config
+  ;; if you don't already have this set in citar
+  (setq citar-bibliography "path/to/bib")
+  (setq citar-templates
+      `((main . " ${=key= id:15} ${title:48}")
+        (suffix . "${author editor:30}  ${=type=:12}  ${=beref=:12} ${tags keywords:*}")
+        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")))
+        
+  ;; Standard Emacs completion-at-point support. NOTE: `citar-capf` takes priority
+  ;; in hook functions but will move to the next function in the hook if no
+  ;; matches are available.
+  (defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
+  ;; Add hooks
+  (add-hook 'tex-mode-hook #'citar-capf-hook)
+  (add-hook 'markdown-mode-hook #'citar-capf-hook)
+  (add-hook 'org-mode-hook #'citar-capf-hook)
+  ;; Global hook
+  (add-hook 'completion-at-point-functions #'citar-capf 'append))
+#+end_src
 
 ** Customization
 
