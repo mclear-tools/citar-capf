@@ -6,6 +6,12 @@ keys. This backend activates for citation styles used by =pandoc-mode= (@),
 Please note that =citar-capf= reads from a bibliography file or files specified in
 =citar-bibliography= and presents completion info as set by =citar-templates=. 
 
+#+BEGIN_HTML
+<div>
+<img src="citar-capf-screenshot.png"/>
+</div>
+#+END_HTML
+
 ** Initialization 
 
 Load the package and add the following hooks:
@@ -49,7 +55,6 @@ If you use use-package, here's how you might set things:
   ;; Global hook
   (add-hook 'completion-at-point-functions #'citar-capf 'append))
 #+end_src
-
 
 ** Acknowledgements
 
