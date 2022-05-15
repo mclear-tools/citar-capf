@@ -72,8 +72,7 @@ The parsing of the bibtex file is handled by citar."
                                  (line-beginning-position))))))
 
       ;; Get and insert candidate
-      (let* (;(candidates (citar--get-candidates))
-             (candidates (capf-bibtex-candidates))
+      (let* ((candidates (citar--get-candidates))
              (begin (save-excursion (backward-word) (point)))
              (end (point)))
         (list begin end candidates
@@ -83,7 +82,6 @@ The parsing of the bibtex file is handled by citar."
                 ;; take completion str and replace with key
                 (delete-char (- (length str)))
                 (insert (cadr (assoc str candidates)))))))))
-
 
 (provide 'citar-capf)
 ;;; citar-capf.el ends here
