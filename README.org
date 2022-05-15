@@ -50,3 +50,8 @@ If you use use-package, here's how you might set things:
   (add-hook 'completion-at-point-functions #'citar-capf 'append))
 #+end_src
 
+
+** Acknowledgements
+
+- Thanks to [[https://github.com/bdarcus][Bruce D'Arcus]] for discussion of how to best flesh out the completion
+  function. 
