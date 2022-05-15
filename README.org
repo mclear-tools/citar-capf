@@ -3,6 +3,9 @@ and markdown modes. This completion depends on [[https://github.com/bdarcus/cita
 keys. This backend activates for citation styles used by =pandoc-mode= (@),
 =latex-mode= (\cite{}), and =org-mode= (cite:@).
 
+Please note that =citar-capf= reads from a bibliography file or files specified in
+=citar-bibliography= and presents completion info as set by =citar-templates=. 
+
 ** Initialization 
 
 Load the package and add the following hooks:
@@ -45,15 +48,5 @@ If you use use-package, here's how you might set things:
   (add-hook 'org-mode-hook #'citar-capf-hook)
   ;; Global hook
   (add-hook 'completion-at-point-functions #'citar-capf 'append))
-#+end_src
-
-** Customization
-
-=citar-capf= reads from a bibliography file or files specified in
-=citar-bibliography=. 
-
-#+begin_src emacs-lisp
-(setq citar-bibliography '("/home/cooluser/thesis/thesis1.bib"
-      "/home/cooluser/thesis/thesi2.bib"))
 #+end_src
 
