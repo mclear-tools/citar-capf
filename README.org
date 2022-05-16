@@ -1,9 +1,9 @@
 =citar-capf= provides a completion-at-point function for citations in latex, org,
-and markdown modes. This completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex
-keys. This backend activates for citation styles used by =pandoc-mode= (@),
+and markdown ([[https://pandoc.org/MANUAL.html][pandoc]]) modes. This completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex
+keys. This backend activates for citation styles used by =markdown-mode= (pandoc, (@)),
 =latex-mode= (\cite{}), and =org-mode= (cite:@).
 
-Please note that =citar-capf= reads from a bibliography file or files specified in
+*Please note* that =citar-capf= reads from a bibliography file or files specified in
 =citar-bibliography= and presents completion info as set by =citar-templates=. 
 
 #+BEGIN_HTML

@@ -39,7 +39,9 @@
 ;;;; Functions
 (defun citar-capf ()
   "Complete citation key at point for org, markdown, or latex.
-The parsing of the bibtex file is handled by citar."
+Parsing by citar is of bibtex, biblatex and csl json files, and
+supports multiple different files. Please see citar's
+documentation for further info."
   (let ((element (org-element-at-point))
         (capf-citar-latex-regexp "\\(?:cite\\(?:\\(?:[pt]\\*\\|[pt]\\)?{\\)\\)\\([[:alnum:]_-]*,\\)*\\([[:alnum:]_-]*\\)")
         (capf-citar-markdown-regexp (concat "-?@"                         ; @ preceded by optional -
