@@ -102,10 +102,11 @@ This adds hooks and the citar-capf function to the relevant modes."
   :global t
   (cond (citar-capf-mode
          ;; add to completion framework (buffer-local)
-         (add-hook 'completion-at-point-functions #'citar-capf -90 t))
+         (add-hook 'completion-at-point-functions #'citar-capf -90 t)
+         (add-to-list 'completion-at-point-functions #'citar-capf))
         (t
-         (remove-hook 'completion-at-point-functions #'citar-capf))))
-
+         (remove-hook 'completion-at-point-functions #'citar-capf)
+         (remove #'citar-capf completion-at-point-functions))))
 
   (provide 'citar-capf)
 ;;; citar-capf.el ends here
