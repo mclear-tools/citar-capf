@@ -1,7 +1,8 @@
-=citar-capf= provides a completion-at-point function for citations in latex, org,
-and markdown ([[https://pandoc.org/MANUAL.html][pandoc]]) modes. This completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex
-keys. This backend activates for citation styles used by =markdown-mode= (pandoc, (@)),
-=latex-mode= (\cite{}), and =org-mode= (cite:@).
+=citar-capf= provides a completion-at-point function (via the minor-mode
+=citar-capf-mode=) for citations in latex, org, and markdown ([[https://pandoc.org/MANUAL.html][pandoc]]) modes. This
+completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex keys. This backend
+activates for citation styles used by =markdown-mode= (pandoc, (@)), =latex-mode=
+(\cite{}), and =org-mode= (cite:@).
 
 *Please note* that =citar-capf= reads from a bibliography file or files specified in
 =citar-bibliography= and presents completion info as set by =citar-templates=. 
@@ -14,19 +15,14 @@ keys. This backend activates for citation styles used by =markdown-mode= (pandoc
 
 ** Initialization 
 
-Load the package and add the following hooks:
+Load the package and turn on the minor-mode via the following hooks:
 
 #+begin_src emacs-lisp
 (require 'citar-capf)
 ;; Define hook
-;; NOTE: this hook puts citar-capf first in the list of completion functions for the buffer. 
-(defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
-;; Add hooks
-(add-hook 'tex-mode-hook #'citar-capf-hook)
-(add-hook 'markdown-mode-hook #'citar-capf-hook)
-(add-hook 'org-mode-hook #'citar-capf-hook)
-;; Global hook
-(add-hook 'completion-at-point-functions #'citar-capf 'append)
+(add-hook 'tex-mode-hook #'citar-capf-mode) ;; you may need to define this in more than one tex mode (e.g. latex, reftex, etc). 
+(add-hook 'markdown-mode-hook #'citar-capf-mode)
+(add-hook 'org-mode-hook #'citar-capf-mode)
 #+end_src
 
 If you use use-package, here's how you might set things:
@@ -34,27 +30,18 @@ If you use use-package, here's how you might set things:
 #+begin_src emacs-lisp
 (use-package citar-capf
   :straight (:type git :host github :repo "mclear-tools/citar-capf")
-  :after citar
-  :demand t
+  ;; NOTE: Set these hooks for whatever modes for which you want citar citation completion
+  :hook ((org-mode markdown-mode tex-mode latex-mode reftex-mode) . citar-capf-mode) 
   :config
   ;; if you don't already have this set in citar
   (setq citar-bibliography "path/to/bib")
   (setq citar-templates
       `((main . " ${=key= id:15} ${title:48}")
         (suffix . "${author editor:30}  ${=type=:12}  ${=beref=:12} ${tags keywords:*}")
-        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")))
-        
-  ;; Standard Emacs completion-at-point support. NOTE: `citar-capf` takes priority
-  ;; in hook functions but will move to the next function in the hook if no
-  ;; matches are available.
-  (defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
-  ;; Add hooks
-  (add-hook 'tex-mode-hook #'citar-capf-hook)
-  (add-hook 'markdown-mode-hook #'citar-capf-hook)
-  (add-hook 'org-mode-hook #'citar-capf-hook)
-  ;; Global hook
-  (add-hook 'completion-at-point-functions #'citar-capf 'append))
+        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n"))))
 #+end_src
+
+To remove the hooks just deactivate the minor mode. 
 
 ** Acknowledgements
 

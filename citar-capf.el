@@ -94,5 +94,18 @@ documentation for further info."
                 (delete-char (- (length str)))
                 (insert (cadr (assoc str candidates)))))))))
 
-(provide 'citar-capf)
+;;;; Define Minor Mode
+(define-minor-mode citar-capf-mode
+  "Create a global minor mode for `citar-capf'.
+This adds hooks and the citar-capf function to the relevant modes."
+  :lighter ""
+  :global t
+  (cond (citar-capf-mode
+         ;; add to completion framework (buffer-local)
+         (add-hook 'completion-at-point-functions #'citar-capf -90 t))
+        (t
+         (remove-hook 'completion-at-point-functions #'citar-capf))))
+
+
+  (provide 'citar-capf)
 ;;; citar-capf.el ends here
