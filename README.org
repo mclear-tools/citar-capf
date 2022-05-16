@@ -8,7 +8,7 @@ keys. This backend activates for citation styles used by =markdown-mode= (pandoc
 
 #+BEGIN_HTML
 <div>
-<img src="citar-capf-screenshot.png"/>
+<img src="./screenshots/citar-capf-screenshot.png"/>
 </div>
 #+END_HTML
 
