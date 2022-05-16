@@ -1,11 +1,13 @@
 ;;; citar-capf.el --- bibtex completation at point -*- lexical-binding: t -*-
 
-;; Author: Colin McLear
+;; Author: Colin McLear <mclear@fastmail.com>
 ;; Maintainer: Colin McLear
-;; Version: version
-;; Package-Requires: (citar "0.9")
-;; Homepage: homepage
-;; Keywords: keywords
+;; Created: May 15, 2022
+;; Version: 0.1
+;; SPDX-License-Identifier: GPL-3.0-or-later
+;; Package-Requires: ((emacs "27.1") (parsebib "3.0") (org "9.5") (citeproc "0.9"))
+;; Homepage: https://github.com/mclear-tools/citar-capf
+;; Keywords: convenience, bibtex
 
 
 ;; This file is not part of GNU Emacs
