@@ -1,3 +1,6 @@
+NOTE: Citar-capf is being merged into citar per this [[https://github.com/emacs-citar/citar/commit/784791a090f9a2ed293f8b3ebd5636c690b718bc][commit]]. All further development will be a part of the citar repo. 
+
+
 =citar-capf= provides a completion-at-point function (via the minor-mode
 =citar-capf-mode=) for citations in latex, org, and markdown ([[https://pandoc.org/MANUAL.html][pandoc]]) modes. This
 completion depends on [[https://github.com/bdarcus/citar][citar]] and its parsing of bibtex keys. This backend
