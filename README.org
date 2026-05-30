@@ -1,3 +1,8 @@
+* Unmaintained and archived
+Superseded by bibtex-capf: https://codeberg.org/mclear-tools/bibtex-capf
+
+-----
+
 NOTE: Citar-capf is being merged into citar per this [[https://github.com/emacs-citar/citar/commit/784791a090f9a2ed293f8b3ebd5636c690b718bc][commit]]. All further development will be a part of the citar repo. 
 
 
